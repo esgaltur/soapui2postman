@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+    <con:entry key="x-test-header" value="123456789"/>
+    <con:entry key="x-test-json-header" value="{&quot;a&quot;:&quot;b&quot;}"/>
+    <con:entry key="x-str-header" value="asdfghj"/>
+</xml-fragment>

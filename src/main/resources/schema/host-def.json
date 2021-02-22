@@ -1,0 +1,7 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "#/definitions/host",
+  "title": "Host",
+  "type": "string",
+  "description": "The proxy server host"
+}

@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "title": "File",
+  "properties": {
+    "src": {
+      "oneOf": [
+        {
+          "type": "string",
+          "description": "Contains the name of the file to upload. _Not the path_."
+        },
+        {
+          "type": "null",
+          "description": "A null src indicates that no file has been selected as a part of the request body"
+        }
+      ]
+    },
+    "content": {
+      "type": "string"
+    }
+  }
+}

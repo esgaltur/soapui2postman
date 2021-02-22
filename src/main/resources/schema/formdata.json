@@ -1,0 +1,71 @@
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "title": "FormParameter",
+    "anyOf": [
+      {
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "disabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "When set to true, prevents this form data entity from being sent."
+          },
+          "type": {
+            "type": "string",
+            "const": "text"
+          },
+          "contentType": {
+            "type": "string",
+            "description": "Override Content-Type header of this form data entity."
+          },
+          "description": {
+            "$ref": "description.json"
+          }
+        },
+        "required": [
+          "key"
+        ]
+      },
+      {
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "src": {
+            "type": [
+              "array",
+              "string",
+              "null"
+            ]
+          },
+          "disabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "When set to true, prevents this form data entity from being sent."
+          },
+          "type": {
+            "type": "string",
+            "const": "file"
+          },
+          "contentType": {
+            "type": "string",
+            "description": "Override Content-Type header of this form data entity."
+          },
+          "description": {
+            "$ref": "description.json"
+          }
+        },
+        "required": [
+          "key"
+        ]
+      }
+    ]
+  }
+}

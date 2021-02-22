@@ -1,0 +1,41 @@
+{
+  "type": "object",
+  "title": "Item",
+  "$id": "#/definitions/item",
+  "description": "Items are entities which contain an actual HTTP request, and sample responses attached to it.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "A unique ID that is used to identify collections internally"
+    },
+    "name": {
+      "type": "string",
+      "description": "A human readable identifier for the current item."
+    },
+    "description": {
+      "$ref": "description.json"
+    },
+    "variable": {
+      "$ref": "variable-list.json"
+    },
+    "event": {
+      "$ref": "event-list.json"
+    },
+    "request": {
+        "$ref": "request.json"
+    },
+    "response": {
+      "type": "array",
+      "title": "Responses",
+      "items": {
+        "$ref": "response.json"
+      }
+    },
+    "protocolProfileBehavior": {
+      "$ref": "protocol-behavior.json"
+    }
+  },
+  "required": [
+    "request"
+  ]
+}

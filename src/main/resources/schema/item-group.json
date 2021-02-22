@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Folder",
+  "$id": "#/definitions/item-group",
+  "description": "One of the primary goals of Postman is to organize the development of APIs. To this end, it is necessary to be able to group requests together. This can be achived using 'Folders'. A folder just is an ordered set of requests.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "A folder's friendly name is defined by this field. You would want to set this field to a value that would allow you to easily identify this folder."
+    },
+    "description": {
+      "$ref": "description.json"
+    },
+    "variable": {
+      "$ref": "variable.json"
+    },
+    "item": {
+      "description": "Items are entities which contain an actual HTTP request, and sample responses attached to it. Folders may contain many items.",
+      "type": "array",
+      "items": {
+        "title": "Items",
+        "anyOf": [
+          {
+            "$ref": "item.json"
+          },
+          {
+            "$ref": "item-group.json"
+          }
+        ]
+      }
+    },
+    "event": {
+      "$ref": "event-list.json"
+    },
+    "auth": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "auth.json"
+        }
+      ]
+    },
+    "protocolProfileBehavior": {
+      "$ref": "protocol-behavior.json"
+    }
+  },
+  "required": [
+    "item"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "type": "object",
+  "description": "This field contains the data usually contained in the request body.",
+  "properties": {
+    "mode": {
+      "description": "Postman stores the type of data associated with this request in this field.",
+      "enum": [
+        "raw",
+        "urlencoded",
+        "formdata",
+        "file",
+        "graphql"
+      ]
+    },
+    "raw": {
+      "type": "string"
+    },
+    "graphql": {
+      "type": "object"
+    },
+    "urlencoded": {
+      "$ref": "urlencoded.json"
+    },
+    "formdata": {
+      "$ref": "formdata.json"
+    },
+    "file": {
+      "type": "object",
+      "properties": {
+        "src": {
+          "oneOf": [
+            {
+              "type": "string",
+              "description": "Contains the name of the file to upload. _Not the path_."
+            },
+            {
+              "type": "null",
+              "description": "A null src indicates that no file has been selected as a part of the request body"
+            }
+          ]
+        },
+        "content": {
+          "type": "string"
+        }
+      }
+    },
+    "options": {
+      "type": "object",
+      "description": "Additional configurations and options set for various body modes."
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "When set to true, prevents request body from being sent."
+    }
+  }
+}

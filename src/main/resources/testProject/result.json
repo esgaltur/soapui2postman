@@ -1,0 +1,218 @@
+{
+  "info": {
+    "name": "https://run.mocky.io",
+    "_postman_id": "1aeb5519-88ea-485f-a799-8df2136e6c97",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET",
+      "variable": [],
+      "event": [],
+      "request": {
+        "url": {
+          "raw": "https://run.mocky.io/v3/64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1",
+          "protocol": "https",
+          "host": "run.mocky.io",
+          "path": [
+            "v3",
+            "64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1"
+          ],
+          "port": "",
+          "query": [],
+          "variable": []
+        },
+        "auth": {
+          "type": "basic",
+          "apikey": [],
+          "awsv4": [],
+          "basic": [
+            {
+              "key": "username",
+              "value": "test",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "test",
+              "type": "string"
+            }
+          ],
+          "bearer": [],
+          "digest": [],
+          "edgegrid": [],
+          "hawk": [],
+          "ntlm": [],
+          "oauth1": [],
+          "oauth2": []
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "a",
+            "value": "1",
+            "disabled": false,
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "urlencoded": [],
+          "formdata": [],
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "disabled": false
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST",
+      "variable": [],
+      "event": [],
+      "request": {
+        "url": {
+          "raw": "https://run.mocky.io/v3/64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1",
+          "protocol": "https",
+          "host": "run.mocky.io",
+          "path": [
+            "v3",
+            "64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1"
+          ],
+          "port": "",
+          "query": [],
+          "variable": []
+        },
+        "auth": {
+          "type": "basic",
+          "apikey": [],
+          "awsv4": [],
+          "basic": [
+            {
+              "key": "username",
+              "value": "test",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "test",
+              "type": "string"
+            }
+          ],
+          "bearer": [],
+          "digest": [],
+          "edgegrid": [],
+          "hawk": [],
+          "ntlm": [],
+          "oauth1": [],
+          "oauth2": []
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-test-json-header",
+            "value": "{\"a\":\"b\"}",
+            "disabled": false,
+            "description": ""
+          },
+          {
+            "key": "a",
+            "value": "",
+            "disabled": false,
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"someField\": \"SomeValue\"}",
+          "urlencoded": [],
+          "formdata": [],
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "disabled": false
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PUT",
+      "variable": [],
+      "event": [],
+      "request": {
+        "url": {
+          "raw": "https://run.mocky.io/v3/64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1",
+          "protocol": "https",
+          "host": "run.mocky.io",
+          "path": [
+            "v3",
+            "64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1"
+          ],
+          "port": "",
+          "query": [],
+          "variable": []
+        },
+        "auth": {
+          "type": "basic",
+          "apikey": [],
+          "awsv4": [],
+          "basic": [
+            {
+              "key": "username",
+              "value": "test",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "test",
+              "type": "string"
+            }
+          ],
+          "bearer": [],
+          "digest": [],
+          "edgegrid": [],
+          "hawk": [],
+          "ntlm": [],
+          "oauth1": [],
+          "oauth2": []
+        },
+        "method": "PUT",
+        "header": [
+          {
+            "key": "x-test-json-header",
+            "value": "{\"a\":\"b\"}",
+            "disabled": false,
+            "description": ""
+          },
+          {
+            "key": "a",
+            "value": "",
+            "disabled": false,
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"someField\": \"SomeValue\"}",
+          "urlencoded": [],
+          "formdata": [],
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "disabled": false
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [],
+  "variable": []
+}

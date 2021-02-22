@@ -1,0 +1,30 @@
+{
+  "type": "array",
+  "description": "An array of QueryParams, which is basically the query string part of the URL, parsed into separate variables",
+  "items": {
+    "type": "object",
+    "title": "QueryParam",
+    "properties": {
+      "key": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "value": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false,
+        "description": "If set to true, the current query parameter will not be sent with the request."
+      },
+      "description": {
+        "$ref": "description.json"
+      }
+    }
+  }
+}

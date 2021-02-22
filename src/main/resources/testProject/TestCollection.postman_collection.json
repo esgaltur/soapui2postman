@@ -1,0 +1,487 @@
+{
+	"info": {
+		"_postman_id": "ce19dcc1-a161-45f2-b18c-4d26699a2903",
+		"name": "TestCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "test",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-test-header",
+						"value": "1245678",
+						"type": "text"
+					},
+					{
+						"key": "x-json-test-header",
+						"value": "{\"a\":\"b\"}",
+						"type": "text"
+					},
+					{
+						"key": "x-string-header",
+						"value": "asdsadasd",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://run.mocky.io/v3/64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1?a=1",
+					"protocol": "https",
+					"host": [
+						"run",
+						"mocky",
+						"io"
+					],
+					"path": [
+						"v3",
+						"64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GET",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-test-header",
+								"value": "1245678",
+								"type": "text"
+							},
+							{
+								"key": "x-json-test-header",
+								"value": "{\"a\":\"b\"}",
+								"type": "text"
+							},
+							{
+								"key": "x-string-header",
+								"value": "asdsadasd",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://run.mocky.io/v3/64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1?a=1",
+							"protocol": "https",
+							"host": [
+								"run",
+								"mocky",
+								"io"
+							],
+							"path": [
+								"v3",
+								"64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1"
+							],
+							"query": [
+								{
+									"key": "a",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-some-header",
+							"value": "1234"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 20 Feb 2021 14:53:24 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "27"
+						},
+						{
+							"key": "Sozu-Id",
+							"value": "13b3d57f-0aaa-4b66-ae3d-96980872b1bd"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"someField\": \"SomeValue\"\n}"
+				}
+			]
+		},
+		{
+			"name": "POST",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "test",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-test-header",
+						"value": "{{x-test-header}}",
+						"type": "text"
+					},
+					{
+						"key": "x-json-test-header",
+						"value": "{{x-json-test-header}}",
+						"type": "text"
+					},
+					{
+						"key": "x-string-header",
+						"value": "{{x-string-header}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Charset",
+						"value": "UTF-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"someField\": \"SomeValue\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://run.mocky.io/v3/64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1",
+					"protocol": "https",
+					"host": [
+						"run",
+						"mocky",
+						"io"
+					],
+					"path": [
+						"v3",
+						"64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "POST",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-test-header",
+								"value": "1245678",
+								"type": "text"
+							},
+							{
+								"key": "x-json-test-header",
+								"value": "{\"a\":\"b\"}",
+								"type": "text"
+							},
+							{
+								"key": "x-string-header",
+								"value": "asdsadasd",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"someField\": \"SomeValue\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://run.mocky.io/v3/64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1",
+							"protocol": "https",
+							"host": [
+								"run",
+								"mocky",
+								"io"
+							],
+							"path": [
+								"v3",
+								"64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-some-header",
+							"value": "1234"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 20 Feb 2021 14:53:15 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "27"
+						},
+						{
+							"key": "Sozu-Id",
+							"value": "9429821c-bc5a-4a36-b87e-da74fc2b086c"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"someField\": \"SomeValue\"\n}"
+				}
+			]
+		},
+		{
+			"name": "PUT",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "test",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-test-header",
+						"value": "{{x-test-header}}",
+						"type": "text"
+					},
+					{
+						"key": "x-json-test-header",
+						"value": "{{x-json-test-header}}",
+						"type": "text"
+					},
+					{
+						"key": "x-string-header",
+						"value": "{{x-string-header}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Charset",
+						"value": "UTF-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"someField\": \"SomeValue\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://run.mocky.io/v3/64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1",
+					"protocol": "https",
+					"host": [
+						"run",
+						"mocky",
+						"io"
+					],
+					"path": [
+						"v3",
+						"64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "PUT",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-test-header",
+								"value": "1245678",
+								"type": "text"
+							},
+							{
+								"key": "x-json-test-header",
+								"value": "{\"a\":\"b\"}",
+								"type": "text"
+							},
+							{
+								"key": "x-string-header",
+								"value": "asdsadasd",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"someField\": \"SomeValue\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://run.mocky.io/v3/64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1",
+							"protocol": "https",
+							"host": [
+								"run",
+								"mocky",
+								"io"
+							],
+							"path": [
+								"v3",
+								"64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-some-header",
+							"value": "1234"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 20 Feb 2021 14:52:51 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "27"
+						},
+						{
+							"key": "Sozu-Id",
+							"value": "058e069d-06b7-4b0c-9f8f-6aad44bece5f"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"someField\": \"SomeValue\"\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "wisdominmyheart7322",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "rest",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "x-test-header",
+			"value": "1245678"
+		},
+		{
+			"key": "x-json-test-header",
+			"value": "{\"a\":\"b\"}"
+		},
+		{
+			"key": "x-string-header",
+			"value": "asdsadasd"
+		},
+		{
+			"key": "Content-Type",
+			"value": "application/json"
+		},
+		{
+			"key": "Accept-Charset",
+			"value": "UTF-8"
+		}
+	]
+}

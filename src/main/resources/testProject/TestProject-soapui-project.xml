@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="1779fe9d-d04c-44c7-9c80-e478017bcf1f" activeEnvironment="Default" name="TestProject"
+                    soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" resourceRoot=""
+                    xmlns:con="http://eviware.com/soapui/config">
+    <con:settings/>
+    <con:interface xsi:type="con:RestService" id="86620273-1775-431a-bfbf-c82c12cfd538"
+                   wadlVersion="http://wadl.dev.java.net/2009/02" name="https://run.mocky.io" type="rest"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:settings/>
+        <con:definitionCache type="TEXT" rootPart=""/>
+        <con:endpoints>
+            <con:endpoint>https://run.mocky.io</con:endpoint>
+        </con:endpoints>
+        <con:resource name="" path="/v3/64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1" id="5d553086-3dd9-49c2-93c1-37e4cf5b4f24">
+            <con:settings/>
+            <con:parameters>
+                <con:parameter>
+                    <con:name>a</con:name>
+                    <con:value/>
+                    <con:style>QUERY</con:style>
+                    <con:default/>
+                    <con:description xsi:nil="true"/>
+                </con:parameter>
+            </con:parameters>
+            <con:method name="GET" id="8ed790bb-21b9-43ca-8c41-22701f5b35be" method="GET">
+                <con:settings/>
+                <con:parameters/>
+                <con:representation type="RESPONSE">
+                    <con:mediaType>application/json; charset=UTF-8</con:mediaType>
+                    <con:status>200</con:status>
+                    <con:params/>
+                    <con:element xmlns:bb0="https://run.mocky.io/v3/64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1">bb0:Response
+                    </con:element>
+                </con:representation>
+                <con:representation type="REQUEST">
+                    <con:mediaType>application/json</con:mediaType>
+                    <con:params/>
+                </con:representation>
+                <con:representation type="RESPONSE">
+                    <con:mediaType xsi:nil="true"/>
+                    <con:status>0</con:status>
+                    <con:params/>
+                    <con:element>data</con:element>
+                </con:representation>
+                <con:request name="GET" id="b51d9d93-66f9-42dc-a99f-db1b5b83ae46" mediaType="application/json"
+                             postQueryString="false">
+                    <con:settings>
+                        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="x-str-test-header" value="sdafghjhk"/>
+  <con:entry key="x-some-test-header" value="123456"/>
+  <con:entry key="x-json-test-header" value="{&quot;a&quot;:&quot;b&quot;}"/>
+</xml-fragment>]]></con:setting>
+                    </con:settings>
+                    <con:encoding>UTF-8</con:encoding>
+                    <con:endpoint>https://run.mocky.io</con:endpoint>
+                    <con:request/>
+                    <con:originalUri>https://run.mocky.io/v3/64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1</con:originalUri>
+                    <con:credentials>
+                        <con:username>test</con:username>
+                        <con:password>test</con:password>
+                        <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+                        <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+                        <con:authType>Global HTTP Settings</con:authType>
+                    </con:credentials>
+                    <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                    <con:jmsPropertyConfig/>
+                    <con:parameters>
+                        <entry key="a" value="1" xmlns="http://eviware.com/soapui/config"/>
+                    </con:parameters>
+                    <con:parameterOrder>
+                        <con:entry>a</con:entry>
+                    </con:parameterOrder>
+                </con:request>
+            </con:method>
+            <con:method name="POST" id="9b9ff09a-3006-4bb5-8496-3610df9fa788" method="POST">
+                <con:settings/>
+                <con:parameters/>
+                <con:representation type="RESPONSE">
+                    <con:mediaType>application/json; charset=UTF-8</con:mediaType>
+                    <con:status>200</con:status>
+                    <con:params/>
+                    <con:element xmlns:bb0="https://run.mocky.io/v3/64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1">bb0:Response
+                    </con:element>
+                </con:representation>
+                <con:representation type="REQUEST">
+                    <con:mediaType>application/json</con:mediaType>
+                    <con:params/>
+                </con:representation>
+                <con:request name="POST" id="19d8b795-3e4a-49e7-818d-952e4cce043e" mediaType="application/json"
+                             postQueryString="false">
+                    <con:settings>
+                        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="x-test-header" value="123456"/>
+  <con:entry key="x-test-json-header" value="{&quot;a&quot;:&quot;b&quot;}"/>
+  <con:entry key="x-str-header" value="asdfg"/>
+</xml-fragment>]]></con:setting>
+                    </con:settings>
+                    <con:endpoint>https://run.mocky.io</con:endpoint>
+                    <con:request>{"someField": "SomeValue"}</con:request>
+                    <con:originalUri>https://run.mocky.io/v3/64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1</con:originalUri>
+                    <con:credentials>
+                        <con:username>test</con:username>
+                        <con:password>test</con:password>
+                        <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+                        <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+                        <con:authType>Global HTTP Settings</con:authType>
+                    </con:credentials>
+                    <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                    <con:jmsPropertyConfig/>
+                    <con:parameters>
+                        <con:entry key="x-test-json-header" value="{&quot;a&quot;:&quot;b&quot;}"/>
+                        <con:entry key="a" value=""/>
+                    </con:parameters>
+                    <con:parameterOrder>
+                        <con:entry>a</con:entry>
+                    </con:parameterOrder>
+                </con:request>
+            </con:method>
+            <con:method name="PUT" id="24546a4e-0f99-4676-ba4c-9f9752c630f3" method="PUT">
+                <con:settings/>
+                <con:parameters/>
+                <con:representation type="RESPONSE">
+                    <con:mediaType>application/json; charset=UTF-8</con:mediaType>
+                    <con:status>200</con:status>
+                    <con:params/>
+                    <con:element xmlns:bb0="https://run.mocky.io/v3/64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1">bb0:Response
+                    </con:element>
+                </con:representation>
+                <con:representation type="REQUEST">
+                    <con:mediaType>application/json</con:mediaType>
+                    <con:params/>
+                </con:representation>
+                <con:request name="PUT" id="3d229b19-f9f9-45bc-a01b-fb5895d78fd0" mediaType="application/json"
+                             postQueryString="false">
+                    <con:settings>
+                        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="x-test-header" value="123456789"/>
+  <con:entry key="x-test-json-header" value="{&quot;a&quot;:&quot;b&quot;}"/>
+  <con:entry key="x-str-header" value="asdfghj"/>
+</xml-fragment>]]></con:setting>
+                    </con:settings>
+                    <con:endpoint>https://run.mocky.io</con:endpoint>
+                    <con:request>{"someField": "SomeValue"}</con:request>
+                    <con:originalUri>https://run.mocky.io/v3/64724bb0-2dfb-4455-a6b8-8b78c5a6eaa1</con:originalUri>
+                    <con:credentials>
+                        <con:username>test</con:username>
+                        <con:password>test</con:password>
+                        <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+                        <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+                        <con:authType>Global HTTP Settings</con:authType>
+                    </con:credentials>
+                    <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                    <con:jmsPropertyConfig/>
+                    <con:parameters>
+                        <con:entry key="x-test-json-header" value="{&quot;a&quot;:&quot;b&quot;}"/>
+                        <con:entry key="a" value=""/>
+                    </con:parameters>
+                    <con:parameterOrder>
+                        <con:entry>a</con:entry>
+                    </con:parameterOrder>
+                </con:request>
+            </con:method>
+        </con:resource>
+    </con:interface>
+    <con:properties/>
+    <con:wssContainer/>
+    <con:oAuth2ProfileContainer/>
+    <con:oAuth1ProfileContainer/>
+    <con:sensitiveInformation/>
+</con:soapui-project>

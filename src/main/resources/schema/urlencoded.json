@@ -1,0 +1,25 @@
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "title": "UrlEncodedParameter",
+    "properties": {
+      "key": {
+        "type": "string"
+      },
+      "value": {
+        "type": "string"
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "description": {
+        "$ref": "description.json"
+      }
+    },
+    "required": [
+      "key"
+    ]
+  }
+}
