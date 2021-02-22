@@ -25,7 +25,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
+import java.util.UUID;
 
 import static cz.esgaltur.soapui2postman.constants.SoaupUi2PostmanConstants.INTERFACE_TAG_NAME;
 import static cz.esgaltur.soapui2postman.unmarshaller.UnmarshallUtils.getStreamReader;
@@ -55,7 +59,7 @@ public class SoapUIUnmarshaller {
     @Autowired
     public SoapUIUnmarshaller(RestServiceToCollectionMapper restServiceToCollectionMapper,
                               SoapUi2PostmanConfig soapUi2PostmanConfig)
-                              throws IOException, XMLStreamException, JAXBException {
+            throws IOException, XMLStreamException, JAXBException {
         this.soapUi2PostmanConfig = soapUi2PostmanConfig;
         processSoapUIXML(restServiceToCollectionMapper);
     }
@@ -63,15 +67,14 @@ public class SoapUIUnmarshaller {
     /**
      * @param restServiceToCollectionMapper
      * @throws IOException
-     * @throws XMLStreamException
      * @throws JAXBException
      */
-    private void processSoapUIXML(RestServiceToCollectionMapper restServiceToCollectionMapper) throws IOException, XMLStreamException, JAXBException {
+    private void processSoapUIXML(RestServiceToCollectionMapper restServiceToCollectionMapper) throws IOException, JAXBException {
         CountingInputStream cis = new CountingInputStream(
                 new FileInputStream(soapUi2PostmanConfig.getFileName()));
         Optional<XMLStreamReader2> xmlStreamReaderMainOpt = getStreamReader(cis);
         Unmarshaller unmarshaller = getUnmarshallerByClass(RestService.class);
-        xmlStreamReaderMainOpt.ifPresent(xmlStreamReaderMain -> {
+         xmlStreamReaderMainOpt.ifPresent(xmlStreamReaderMain -> {
             try {
                 while (xmlStreamReaderMain.hasNext()) {
                     switch (xmlStreamReaderMain.getEventType()) {
@@ -81,6 +84,7 @@ public class SoapUIUnmarshaller {
                                     JAXBElement<RestService> restServiceJAXBElement = unmarshaller.unmarshal(xmlStreamReaderMain, RestService.class);
                                     RestService restService = restServiceJAXBElement.getValue();
                                     Collection collection = restServiceToCollectionMapper.restServiceToCollection(restService);
+                                    log.info(objectMapper.writeValueAsString(collection));
                                     Files.write(getPath(), objectMapper.writeValueAsBytes(collection));
                                     break;
                                 }
@@ -89,7 +93,14 @@ public class SoapUIUnmarshaller {
                     }
                     xmlStreamReaderMain.next();
                 }
+                xmlStreamReaderMain.close();
+
             } catch (XMLStreamException | JAXBException | IOException e) {
+                try {
+                    xmlStreamReaderMain.closeCompletely();
+                } catch (XMLStreamException xmlStreamException) {
+                    xmlStreamException.printStackTrace();
+                }
                 ExceptionUtils.printRootCauseStackTrace(e);
             }
 
@@ -102,10 +113,12 @@ public class SoapUIUnmarshaller {
      * @return
      */
     private Path getPath() {
-        return Paths.get(soapUi2PostmanConfig.getOutDir()
+        Path path = Paths.get(soapUi2PostmanConfig.getOutDir()
                 .concat(
                         new File(soapUi2PostmanConfig.getFileName())
-                                .getName().concat("_processed.json")));
+                                .getName().toLowerCase(Locale.ROOT).concat("_"+ UUID.randomUUID() +"_.json")));
+        log.info(path.toString());
+        return path;
     }
 
 

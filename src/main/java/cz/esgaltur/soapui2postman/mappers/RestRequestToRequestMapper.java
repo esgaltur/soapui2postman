@@ -15,18 +15,16 @@ import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring",
         uses = {EntryToHeaderMapper.class,
-                EntryToQueryMapper.class})
+                EntryToQueryMapper.class,StringToUrl.class})
 public interface RestRequestToRequestMapper {
 
     /**
-     *
      * @param request
      * @return
      */
     List<Request> restRequestListToItemList(List<RestRequest> request);
 
     /**
-     *
      * @param request
      * @return
      */
@@ -37,26 +35,9 @@ public interface RestRequestToRequestMapper {
     @Mapping(source = "originalUri", target = "url")
     @Mapping(source = "request", target = "body")
     @Mapping(source = "parameters.entry", target = "url.query")
-//    @Mapping(source = "mediaType", target = "")
-//    @Mapping(source = "accept", target = "")
-//    @Mapping(source = "encoding", target = "")
     Request restRequestToRequset(RestRequest request);
 
-    default Url map(String value) throws MalformedURLException {
-        if (StringUtils.isBlank(value)) {
-            return new Url();
-        }
-        java.net.URL netUrl = new java.net.URL(value);
-        Url url = new Url();
-        url.setPort(netUrl.getPort() > 0 ? String.valueOf(netUrl.getPort()) : "");
-        url.setQuery(new ArrayList<>());
-        url.setHost(netUrl.getHost());
-        url.setProtocol(netUrl.getProtocol());
-        url.setRaw(value);
-        List<String> paths = Arrays.stream(netUrl.getPath().split("/")).filter(s -> !s.isBlank()).collect(Collectors.toList());
-        url.setPath(paths);
-        return url;
-    }
+
 
     default Body mapBody(CompressedString request) {
         if (request == null) {
@@ -75,15 +56,17 @@ public interface RestRequestToRequestMapper {
 
     @AfterMapping
     default void after(@MappingTarget Request request, RestRequest restRequest) {
-        request.getAuth().getBasic().add(new AuthAttribute());
-        request.getAuth().getBasic().add(new AuthAttribute());
-        //-----------------------------------//
-        request.getAuth().getBasic().get(0).setType("string");
-        request.getAuth().getBasic().get(0).setKey("username");
-        request.getAuth().getBasic().get(0).setValue(restRequest.getCredentials().getUsername());
-        //-----------------------------------//
-        request.getAuth().getBasic().get(1).setType("string");
-        request.getAuth().getBasic().get(1).setKey("password");
-        request.getAuth().getBasic().get(1).setValue(restRequest.getCredentials().getPassword());
+        if (restRequest.getCredentials() != null) {
+            request.getAuth().getBasic().add(new AuthAttribute());
+            request.getAuth().getBasic().add(new AuthAttribute());
+            //-----------------------------------//
+            request.getAuth().getBasic().get(0).setType("string");
+            request.getAuth().getBasic().get(0).setKey("username");
+            request.getAuth().getBasic().get(0).setValue(restRequest.getCredentials().getUsername());
+            //-----------------------------------//
+            request.getAuth().getBasic().get(1).setType("string");
+            request.getAuth().getBasic().get(1).setKey("password");
+            request.getAuth().getBasic().get(1).setValue(restRequest.getCredentials().getPassword());
+        }
     }
 }

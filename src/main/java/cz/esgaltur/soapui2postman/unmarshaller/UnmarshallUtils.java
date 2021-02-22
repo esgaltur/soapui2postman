@@ -38,12 +38,12 @@ public class UnmarshallUtils {
      * @return XMLStreamReader2
      * @throws XMLStreamException
      */
-    public static Optional<XMLStreamReader2> getStreamReader(InputStream countingInputStream) throws XMLStreamException {
+    public static Optional<XMLStreamReader2> getStreamReader(InputStream countingInputStream)   {
         try {
             XMLInputFactory2 xmlInputFactory = new InputFactoryImpl();
             xmlInputFactory.configureForSpeed();
             return Optional.of((XMLStreamReader2) xmlInputFactory.createXMLStreamReader(countingInputStream));
-        } catch (WFCException e) {
+        } catch (XMLStreamException e) {
             ExceptionUtils.printRootCauseStackTrace(e);
             return Optional.empty();
         }

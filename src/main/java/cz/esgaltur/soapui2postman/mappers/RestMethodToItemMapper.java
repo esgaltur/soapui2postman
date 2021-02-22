@@ -6,7 +6,9 @@ import cz.esgaltur.soapui2postman.generated.soapui.StringToStringMap;
 import cz.esgaltur.soapui2postman.postman.Header;
 import cz.esgaltur.soapui2postman.postman.Item;
 import cz.esgaltur.soapui2postman.postman.Request;
+import cz.esgaltur.soapui2postman.postman.Url;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.codehaus.stax2.XMLStreamReader2;
 import org.mapstruct.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import static cz.esgaltur.soapui2postman.constants.SoaupUi2PostmanConstants.ENTRY_TAG_NAME;
 import static cz.esgaltur.soapui2postman.unmarshaller.UnmarshallUtils.getStreamReader;
@@ -42,19 +45,24 @@ public abstract class RestMethodToItemMapper {
      * @param restMethod restmethod
      * @return List<Object> of Item
      */
-    public List<Object> restResourceToItem(List<RestMethod> restMethod) {
+    public List<Item> restMethodToItem(List<Url> urlList, List<RestMethod> restMethod) {
         List<Item> list = new ArrayList<>();
         restMethod.forEach(restMethod1 -> {
             restMethod1.getRequest().forEach(request -> {
-                Item item = new Item();
-                item.setName(request.getName());
-                item.setRequest(restRequestToRequest.restRequestToRequset(request));
-                item.getRequest().setMethod(Request.Method.valueOf(restMethod1.getMethod()));
-                item.getRequest().setHeader(getHeaderList(request.getSettings().getSetting()));
-                list.add(item);
+                for (Url url : urlList) {
+                    Item item = new Item();
+                    item.setId(UUID.randomUUID().toString());
+                    item.setName(request.getName());
+                    item.setRequest(restRequestToRequest.restRequestToRequset(request));
+                    item.getRequest().setUrl(url);
+                    item.getRequest().setMethod(Request.Method.valueOf(restMethod1.getMethod()));
+                    item.getRequest().setHeader(getHeaderList(request.getSettings().getSetting()));
+                    item.setVariable(new ArrayList<>());
+                    list.add(item);
+                }
             });
         });
-        return new ArrayList<>(list);
+        return list;
     }
 
     /**
@@ -68,31 +76,53 @@ public abstract class RestMethodToItemMapper {
         settings.forEach(setting -> {
             final Unmarshaller headerCDATAUnmarshaller;
             try {
-                headerCDATAUnmarshaller = getUnmarshallerByClass(StringToStringMap.Entry.class);
-                Optional<XMLStreamReader2> xmlStreamReaderHeader = getStreamReader(new ByteArrayInputStream(setting.getValue().getBytes()));
-                xmlStreamReaderHeader.ifPresent(xmlStreamReader2 -> {
-                    try {
-                        while (xmlStreamReader2.hasNext()) {
-                            switch (xmlStreamReader2.getEventType()) {
-                                case XMLStreamConstants.START_ELEMENT: {
-                                    switch (xmlStreamReader2.getName().toString()) {
-                                        case ENTRY_TAG_NAME: {
-                                            JAXBElement<StringToStringMap.Entry> header = headerCDATAUnmarshaller.unmarshal(xmlStreamReader2, StringToStringMap.Entry.class);
-                                             entryTypeList.add(header.getValue());
-                                        }
-                                    }
-                                }
-                            }
-                            xmlStreamReader2.next();
+
+                String strippedAndTrimmedValue = setting.getValue().strip().trim();
+
+                if (StringUtils.isBlank(strippedAndTrimmedValue))
+                    return;
+
+                if (strippedAndTrimmedValue.equals("true") || (strippedAndTrimmedValue.equals("false")))
+                    return;
+
+                if (StringUtils.isNotBlank(strippedAndTrimmedValue)) {
+                    headerCDATAUnmarshaller = getUnmarshallerByClass(StringToStringMap.Entry.class);
+                    Optional<XMLStreamReader2> xmlStreamReaderHeader = getStreamReader(new ByteArrayInputStream(strippedAndTrimmedValue.getBytes()));
+
+                    xmlStreamReaderHeader.ifPresent(xmlStreamReader2 -> {
+                        processHeaderData(entryTypeList, headerCDATAUnmarshaller, xmlStreamReader2);
+                        try {
+                            xmlStreamReader2.close();
+                        } catch (XMLStreamException e) {
+                            e.printStackTrace();
                         }
-                    } catch (XMLStreamException | JAXBException e) {
-                        e.printStackTrace();
-                    }
-                });
-            } catch (JAXBException | XMLStreamException e) {
+                    });
+                }
+            } catch (JAXBException e) {
                 e.printStackTrace();
             }
+
         });
         return entryToHeaderMapper.entryListToHeaderList(entryTypeList);
+    }
+
+    private void processHeaderData(List<StringToStringMap.Entry> entryTypeList, Unmarshaller headerCDATAUnmarshaller, XMLStreamReader2 xmlStreamReaderHeader) {
+        try {
+            while (xmlStreamReaderHeader.hasNext()) {
+
+                if ((xmlStreamReaderHeader.isStartElement()) && (ENTRY_TAG_NAME.equals(xmlStreamReaderHeader.getName().toString()))) {
+
+                    JAXBElement<StringToStringMap.Entry> header =
+                            headerCDATAUnmarshaller.unmarshal(xmlStreamReaderHeader, StringToStringMap.Entry.class);
+                    entryTypeList.add(header.getValue());
+
+                }
+                xmlStreamReaderHeader.next();
+            }
+        } catch (XMLStreamException | JAXBException e) {
+            log.error(xmlStreamReaderHeader.getLocation().toString());
+            e.printStackTrace();
+        }
+
     }
 }
