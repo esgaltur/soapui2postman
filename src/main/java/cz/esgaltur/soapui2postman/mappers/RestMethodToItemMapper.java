@@ -53,7 +53,7 @@ public abstract class RestMethodToItemMapper {
                     Item item = new Item();
                     item.setId(UUID.randomUUID().toString());
                     item.setName(request.getName());
-                    item.setRequest(restRequestToRequest.restRequestToRequset(request));
+                    item.setRequest(restRequestToRequest.restRequestToRequest(request));
                     item.getRequest().setUrl(url);
                     item.getRequest().setMethod(Request.Method.valueOf(restMethod1.getMethod()));
                     item.getRequest().setHeader(getHeaderList(request.getSettings().getSetting()));
