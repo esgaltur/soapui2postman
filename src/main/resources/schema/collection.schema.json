@@ -1,0 +1,151 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "info": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "schema": {
+          "type": "string"
+        },
+        "postmanId": {
+          "type": "string"
+        }
+      },
+      "required": ["name", "schema"]
+    },
+    "item": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "request": {
+            "type": "object",
+            "properties": {
+              "method": {
+                "type": "string",
+                "enum": ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"]
+              },
+              "url": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "raw": {
+                        "type": "string"
+                      },
+                      "protocol": {
+                        "type": "string"
+                      },
+                      "host": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "path": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "query": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "key": {
+                              "type": "string"
+                            },
+                            "value": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "header": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "string"
+                    },
+                    "disabled": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              },
+              "body": {
+                "type": "object",
+                "properties": {
+                  "mode": {
+                    "type": "string",
+                    "enum": ["raw", "urlencoded", "formdata", "file", "graphql"]
+                  },
+                  "raw": {
+                    "type": "string"
+                  },
+                  "options": {
+                    "type": "object"
+                  }
+                }
+              },
+              "auth": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["apikey", "awsv4", "basic", "bearer", "digest", "edgegrid", "hawk", "noauth", "oauth1", "oauth2", "ntlm"]
+                  },
+                  "basic": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "key": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "response": {
+            "type": "array"
+          }
+        },
+        "required": ["name", "request"]
+      }
+    }
+  },
+  "required": ["info", "item"]
+}
